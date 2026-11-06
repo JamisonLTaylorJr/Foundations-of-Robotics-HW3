@@ -105,9 +105,9 @@ The AMCL particle filter is expected to perform better, particularly over longer
 ## Feedback
 
 **How much time did you spend on this assignment?** 
-
+For HW 3.2, 8 Hours
 **Do you have any feedback for this assignment?**
-
+NA
  
 
 
