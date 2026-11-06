@@ -76,6 +76,10 @@ The initial transform reported a translation of approximately `[0.359, 0.291, 0.
 
 Although the odometry model continuously updated the estimated position, it relied entirely on the wheel encoder readings and our forward kinematics equations from HW2. This means that errors due to wheel slip, encoder noise, imperfect wheel calibration, or turning could accumulate without being corrected.
 
+**Observations from the AMCL Run (`bags/amcl_test.bag`, Q3.1)**
+
+In the AMCL recording, the initial pose estimate was published about 5 s into the bag at approximately `(0.21, 0.32)` with a yaw of `71.6°`. While the rover was stationary, AMCL did not tighten its estimate: the particle cloud remained spread out, with standard deviations of roughly 0.15 m in x, 0.30 m in y, and more than 50° in yaw. This is because AMCL only performs a filter update after the robot has moved a minimum distance or angle. Once we started driving (about 17 s to 27 s into the bag, covering about 1.2 m of travel and 200° of total rotation), the cloud collapsed quickly. By the end of the recording, the standard deviations were about 3 cm in x and y and about 3.5° in yaw. The LiDAR scan also lined up much better with the map walls after convergence than it did right after the initial pose was set. This shows that AMCL corrected our slightly inaccurate initial guess using the sensor data. Odometry-only localization cannot do this: whatever error is present in the initial pose, or builds up while driving, stays in the estimate.
+
 **Comparison with AMCL Particle Filter**
 
 The main difference between the two localization methods is how they handle uncertainty and accumulated errors.
